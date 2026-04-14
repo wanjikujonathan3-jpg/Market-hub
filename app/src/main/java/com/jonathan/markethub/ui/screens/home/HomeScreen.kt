@@ -28,7 +28,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.getValue
@@ -42,26 +45,35 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.jonathan.markethub.R
-
+import com.jonathan.markethub.navigation.ROUT_INTENT
+import com.jonathan.markethub.navigation.ROUT_LOGIN
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+        //Variables
+
 
 
         TopAppBar(
             title = { Text(text = "Home") },
 
-            navigationIcon = {
-                IconButton(onClick = {}) {
+
+
+
+                    navigationIcon = {
+                IconButton(onClick = {navController.navigate(ROUT_INTENT)}) {
                     Icon(
                         imageVector = Icons.Default.Menu,
-                        contentDescription = ""
+                        contentDescription = "",
 
                         )
 
@@ -83,6 +95,10 @@ fun HomeScreen() {
 
 
 
+
+
+
+
         )
 
         //searchbar
@@ -93,7 +109,7 @@ fun HomeScreen() {
             value = search,
             onValueChange = {search =it},
             modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 20.dp) .fillMaxWidth(),
-            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "")},
+            leadingIcon = { Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "")},
             placeholder = { Text(text = "search products category")}
         )
 
@@ -189,8 +205,19 @@ fun HomeScreen() {
 
 
 
+
+
+
+
+
         }
         //end of row
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+
+
+
 
 
 
@@ -221,7 +248,7 @@ fun HomeScreen() {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(rememberNavController())
 
 
 

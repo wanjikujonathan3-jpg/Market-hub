@@ -1,4 +1,4 @@
-package com.jonathan.markethub.ui.screens.about.auth
+package com.jonathan.markethub.ui.screens.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -39,20 +39,18 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.jonathan.markethub.R
+import com.jonathan.markethub.navigation.ROUT_LOGIN
+import com.jonathan.markethub.ui.screens.onboarding.OnboardingScreen
 import com.jonathan.markethub.ui.theme.neworange
 
+
+
+
 @Composable
-fun Registerscreen() {
-
-
-
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavController) {
     Column(
         modifier = Modifier .fillMaxSize()
             .paint(painter = painterResource(R.drawable.background), contentScale = ContentScale.FillBounds),
@@ -184,7 +182,7 @@ fun RegisterScreen() {
             )
         }
 
-        TextButton( onClick = {}) {
+        TextButton( onClick = {navController.navigate(ROUT_LOGIN)}) {
             Text(text = "Already have an account ?  Login ")
         }
 
@@ -233,5 +231,16 @@ fun RegisterScreen() {
 
 }
 
+
+
+@Preview(showBackground = true)
+@Composable
+fun RegisterScreenPreview() {
+
+
+    RegisterScreen(rememberNavController())
+
+
+}
 
 

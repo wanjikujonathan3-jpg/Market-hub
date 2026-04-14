@@ -21,12 +21,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.jonathan.markethub.R
+import com.jonathan.markethub.navigation.ROUT_LOGIN
+import com.jonathan.markethub.navigation.ROUT_REGISTER
+import com.jonathan.markethub.navigation.ROUT_SERVICES
 import com.jonathan.markethub.ui.theme.neworange
 
 
 @Composable
-fun OnboardingScreen(
+fun OnboardingScreen(navController: NavController
 
 ) {
 
@@ -86,7 +91,7 @@ fun OnboardingScreen(
                     "Top platforms in 2026 include Wix for beginners with AI tools and templates, Shopify for dropshipping, BigCommerce for large businesses, WooCommerce (WordPress plugin), and Squarespace for design-focused stores. They offer built-in merchant solutions, app integrations, and multichannel selling."
         )
         Button(
-            onClick = {},
+            onClick = {  navController.navigate(ROUT_REGISTER)},
             colors = ButtonDefaults.buttonColors(neworange),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.width(350.dp)
@@ -138,7 +143,7 @@ fun OnboardingScreen(
 fun OnboardingScreenPreview() {
 
 
-    OnboardingScreen()
+    OnboardingScreen(rememberNavController())
 
 
 }
