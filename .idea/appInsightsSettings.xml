@@ -9,10 +9,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.jonathan.markethub" />
+                  <option name="mobileSdkAppId" value="1:417417473739:android:7701dbd7f791df48a9b54e" />
+                  <option name="projectId" value="markethub-9662d605" />
+                  <option name="projectNumber" value="417417473739" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

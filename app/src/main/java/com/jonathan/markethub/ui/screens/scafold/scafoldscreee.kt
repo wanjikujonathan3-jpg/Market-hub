@@ -1,6 +1,7 @@
 package com.jonathan.markethub.ui.screens.scafold
 
 
+import android.R.attr.navigationIcon
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,11 +31,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.BlendMode.Companion.Color
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.jonathan.markethub.navigation.ROUT_HOME
+import com.jonathan.markethub.ui.theme.newgreen
 import com.jonathan.markethub.ui.theme.neworange
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,17 +58,18 @@ fun scafoldScreen(navController: NavController) {
             //TopBar
             topBar = {
                 TopAppBar(
-                    title = { Text("Contact Screen") },
+                    title = { Text("scaffold Screen") },
                     navigationIcon = {
                         IconButton(onClick = { /* Handle back/nav */ }) {
                             Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = neworange,
+                        containerColor = newgreen,
                         titleContentColor = neworange,
                         navigationIconContentColor = neworange
-                    )
+                    ),
+                    actions = {}
                 )
             },
 
@@ -75,10 +80,11 @@ fun scafoldScreen(navController: NavController) {
                 ){
                     NavigationBarItem(
                         icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                        label = { Text("Home") },
+                        label = { Text("Home", color = newgreen) },
                         selected = selectedIndex == 0,
                         onClick = { selectedIndex = 0
-                            //navController.navigate(ROUT_HOME)
+
+                            navController.navigate(ROUT_HOME)
                         }
                     )
                     NavigationBarItem(
@@ -124,10 +130,7 @@ fun scafoldScreen(navController: NavController) {
 
 
                     //Main Contents of the page
-                    Text(text = "Welcome to Homescreen Screen", fontSize = 20.sp)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text("This is where the main content goes.")
-
+                    
 
 
 

@@ -1,52 +1,21 @@
 package com.jonathan.markethub.ui.screens.about
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import java.security.AccessController
 
 @Composable
-fun AboutScreen(navController: NavController) {
-
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-
-
-
-
-
-
-    }
-
-
-
-
+fun About(navController: NavController){
 
 
 }
 
+@Composable
 @Preview(showBackground = true)
-@Composable
-fun AboutScreenPreview() {
-
-
-    AboutScreen(rememberNavController())
-
-
+fun AboutPreview(){
+    About(rememberNavController())
 }
 
-
-
-
-
-
-
-
-
-
-
+annotation class AboutScreen

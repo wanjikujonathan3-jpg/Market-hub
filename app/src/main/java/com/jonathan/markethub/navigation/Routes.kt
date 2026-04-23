@@ -17,6 +17,14 @@ const val ROUT_SPLASH = "splash"
 
 const val ROUT_SCAFOLD = "scafold"
 
+const val ROUT_UPLOAD_ORDER= "uploadorder"
+const val ROUT_VIEW_ORDER= "vieworder"
+const val ROUTE_ADD_PRODUCT = "addproduct"
+const val ROUTE_VIEW_PRODUCTS = "viewproducts"
+const val ROUTE_UPDATE_PRODUCT = "update_product/{productId}"
+
+
+
 
 
 

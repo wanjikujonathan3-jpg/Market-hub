@@ -11,3 +11,4 @@ val PurpleGrey40 = Color(0xFF625b71)
 
 val neworange = Color(0xFFBB7F28)
 
+val newgreen = Color(0xFF7ACC1B)

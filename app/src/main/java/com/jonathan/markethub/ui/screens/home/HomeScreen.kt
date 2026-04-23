@@ -4,8 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
+
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,10 +27,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.getValue
@@ -71,11 +67,9 @@ fun HomeScreen(navController: NavController) {
 
                     navigationIcon = {
                 IconButton(onClick = {navController.navigate(ROUT_INTENT)}) {
-                    Icon(
-                        imageVector = Icons.Default.Menu,
-                        contentDescription = "",
-
-                        )
+                    //Icon(
+                        //imageVector = Icons.Default.Menu,
+                       // contentDescription = "", )
 
 
                 }
@@ -109,7 +103,7 @@ fun HomeScreen(navController: NavController) {
             value = search,
             onValueChange = {search =it},
             modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 20.dp) .fillMaxWidth(),
-            leadingIcon = { Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "")},
+           // leadingIcon = { Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "")},
             placeholder = { Text(text = "search products category")}
         )
 

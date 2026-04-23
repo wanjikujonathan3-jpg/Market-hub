@@ -1,5 +1,7 @@
 package com.jonathan.markethub.ui.screens.auth
 
+
+import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
@@ -31,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -40,124 +42,109 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.jonathan.markethub.R
-import com.jonathan.markethub.navigation.ROUT_HOME
-import com.jonathan.markethub.navigation.ROUT_REGISTER
 import com.jonathan.markethub.ui.theme.neworange
 
 @Composable
-fun Loginscreen(navController: NavController) {
+fun LoginScreen(navController: NavController){
 
 
     Column(
-        modifier = Modifier .fillMaxSize()
-            .paint(painter = painterResource(R.drawable.background),contentScale = ContentScale.FillBounds),
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(painter = painterResource(R.drawable.btn_radio), contentScale = ContentScale.FillBounds),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
 
-
-
         ) {
-
-
         Image(
-            painter = painterResource(R.drawable.product),
+            painter = painterResource(R.drawable.btn_radio),
             contentDescription = "product",
-            modifier = Modifier.size(200.dp)
+            modifier = Modifier.size(100.dp),
 
-
-        )
-
-
-        Spacer(modifier = Modifier.height(20.dp))
+            )
 
         Text(
-            text = "Welcome back",
-            fontWeight = FontWeight.Bold,
+            text= "Welcome Back!",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.ExtraBold,
             color = neworange,
 
             )
 
-
-        Spacer(modifier = Modifier.size(10.dp))
-
+        Spacer(modifier = Modifier.height(20.dp))
 
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
-        var confirmpasword by remember { mutableStateOf("") }
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             modifier = Modifier.width(350.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
-            label = { Text(text = "email") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            leadingIcon = { Icon(
+                imageVector = Icons.Def.Person,
+                contentDescription = ""
+            ) },
+            label = { Text(text = "Enter Your Email",
+                fontWeight = FontWeight.ExtraBold,
+                color = Color.Black) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = Color.Green,
-                focusedTextColor = Color.Black,
-                unfocusedLeadingIconColor = neworange
+                unfocusedBorderColor = purple,
+                focusedBorderColor = Color.Black,
+                unfocusedLeadingIconColor = purple,
             )
 
-
         )
-
 
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             modifier = Modifier.width(350.dp),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
-            label = { Text(text = "password") },
+            label = { Text(text = "Enter Your Password",
+                fontWeight = FontWeight.ExtraBold,
+                color = Color.Black) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = Color.Green,
-                focusedTextColor = Color.Black,
-                unfocusedLeadingIconColor = neworange
+                unfocusedBorderColor = purple,
+                focusedBorderColor = Color.Black,
+                unfocusedLeadingIconColor = purple,
             ),
             visualTransformation = PasswordVisualTransformation()
-
 
         )
 
 
-        Spacer(modifier = Modifier.size(10.dp))
-
+        Spacer(modifier = Modifier.height(20.dp))
+        val context = LocalContext.current
+        val authViewModel = AuthViewModel(navController, context)
         Button(
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(neworange),
-            shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.width(350.dp)
-
-
+            onClick = {  authViewModel.login(email, password) },
+            colors = ButtonDefaults.buttonColors(purple),
+            shape = RoundedCornerShape(18.dp),
+            modifier = Modifier.width(350.dp),
         ) {
-            Text(
-                text = "Login",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
+            Text(text = "Login")
+        }
+
+
+
+
+        TextButton(onClick = {navController.navigate(ROUT_REGISTER)}) {
+            Text(text = "Don't have an Account? Register.",
+                color = purple,
+                fontWeight = FontWeight.ExtraBold,
             )
+
+
         }
-
-        TextButton(onClick = { navController.navigate(ROUT_REGISTER)}) {
-            Text(text = "Don't have an account ?  REGISTER ")
-        }
-
-
-        TextButton(onClick = { navController.navigate(ROUT_HOME)}) {
-            Text(text = "Go to Home")
-        }
-
-
     }
-
 
 }
 
 @Preview(showBackground = true)
 @Composable
-fun LoginScreenPreview() {
+fun LoginScreenPreview(){
+    LoginScreen(rememberNavController())
 
-
-    Loginscreen(rememberNavController())
 }

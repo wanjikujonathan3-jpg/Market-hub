@@ -1,20 +1,20 @@
 package com.jonathan.markethub.ui.screens.auth
 
+import android.R.attr.onClick
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
+
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -41,9 +42,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.test.espresso.base.Default
 import com.jonathan.markethub.R
+import com.jonathan.markethub.data.AuthViewModel
 import com.jonathan.markethub.navigation.ROUT_LOGIN
-import com.jonathan.markethub.ui.screens.onboarding.OnboardingScreen
 import com.jonathan.markethub.ui.theme.neworange
 
 
@@ -93,21 +95,21 @@ fun RegisterScreen(navController: NavController) {
 
 
 
+
+        //Username
         OutlinedTextField(
             value = username,
-            onValueChange = { username = it},
+            onValueChange = { username = it },
             modifier = Modifier.width(350.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = "") },
-            label = {Text(text = "username")},
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = Color.Green,
-                focusedTextColor = Color.Black,
+                unfocusedBorderColor = neworange,
                 unfocusedLeadingIconColor = neworange
-            )
+            ),
 
-
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
         )
+        //End
+
 
 
 
@@ -115,13 +117,14 @@ fun RegisterScreen(navController: NavController) {
             value = email,
             onValueChange = { email = it},
             modifier = Modifier.width(350.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
+
             label = {Text(text = "email")},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Green,
                 focusedTextColor = Color.Black,
                 unfocusedLeadingIconColor = neworange
+
             )
 
 
@@ -134,7 +137,7 @@ fun RegisterScreen(navController: NavController) {
             value = password,
             onValueChange = { password = it},
             modifier = Modifier.width(350.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
+
             label = {Text(text = "password")},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             colors = OutlinedTextFieldDefaults.colors(
@@ -152,7 +155,7 @@ fun RegisterScreen(navController: NavController) {
             value = confirmpasword,
             onValueChange = { confirmpasword = it},
             modifier = Modifier.width(350.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = "") },
+
             label = {Text(text = "confirm password")},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             colors = OutlinedTextFieldDefaults.colors(
@@ -166,21 +169,30 @@ fun RegisterScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.size(10.dp))
 
+
+
+
+
+
+        // Login Button
+        val context = LocalContext.current
+        val authViewModel = AuthViewModel(navController, context)
+
         Button(
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(neworange),
+            onClick = {
+                authViewModel.login(email, password)
+            },
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.width(350.dp)
-
-
+            colors = ButtonDefaults.buttonColors(neworange),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
         ) {
-            Text(
-                text = "Register",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
+            Text(text = "Login")
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
 
         TextButton( onClick = {navController.navigate(ROUT_LOGIN)}) {
             Text(text = "Already have an account ?  Login ")
